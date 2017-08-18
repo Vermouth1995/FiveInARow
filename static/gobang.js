@@ -141,25 +141,25 @@
                 player_role : opt.player_role
                 },
             success : function(data){
-                if(data.data.code != 0){
+                if(data.code != 0){
                     return false;
                 }
-                if (!can_set_chess(data.data.data.x,data.data.data.y)) {
-                    log("此处(" + data.data.data.x + "," + data.data.data.y + ")不可以落子");
+                if (!can_set_chess(data.data.x,data.data.y)) {
+                    log("此处(" + data.data.x + "," + data.data.y + ")不可以落子");
                     return false;
                 }
                 draw_chess({
                     player_role : opt.player_role,
-                    x           : data.data.data.x,
-                    y           : data.data.data.y
+                    x           : data.data.x,
+                    y           : data.data.y
                 });
                 play_chess({
                     player_role : opt.player_role,
-                    x           : data.data.data.x,
-                    y           : data.data.data.y
+                    x           : data.data.x,
+                    y           : data.data.y
                 });
 
-                play_process.push([opt.player_role, data.data.data.x, data.data.data.y]);
+                play_process.push([opt.player_role, data.data.x, data.data.y]);
 
                 opt.onsuccess(data);
             },
@@ -292,10 +292,10 @@
                onsuccess   : function(data){
                    if ( is_finished({
                        player_role : BLACKCHESS,
-                       x           : data.data.data.x,
-                       y           : data.data.data.y
+                       x           : data.data.x,
+                       y           : data.data.y
                    }) && !play_even) {
-                       draw_chess_win(data.data.data.x, data.data.data.y);
+                       draw_chess_win(data.data.x, data.data.y);
                        log("黑子赢");
                        return false;
                    }else if (play_even) {
@@ -320,10 +320,10 @@
               onsuccess   : function(data){
                   if ( is_finished({
                       player_role : WHITECHESS,
-                      x           : data.data.data.x,
-                      y           : data.data.data.y
+                      x           : data.data.x,
+                      y           : data.data.y
                   }) && !play_even) {
-                      draw_chess_win(data.data.data.x, data.data.data.y);
+                      draw_chess_win(data.data.x, data.data.y);
                       log("白子赢");
                       return false;
                   }else if (play_even) {
