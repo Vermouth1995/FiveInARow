@@ -74,7 +74,7 @@
         var chess_color = (opt.player_role == WHITECHESS) ? '#fff' : "#000";
         ctx.fillStyle = chess_color;
         ctx.beginPath();
-        ctx.arc(60 + 40 * opt.x, 60 + 40 * opt.y, 15, 0, 2 * Math.PI);
+        ctx.arc(60 + 40 * opt.x, 20 + 40 * opt.y, 15, 0, 2 * Math.PI);
         ctx.fill();
     };
 
@@ -86,7 +86,7 @@
         var chess_color = "#ff0000";
         ctx.strokeStyle = chess_color;
         ctx.beginPath();
-        ctx.arc(60 + 40 * x, 60 + 40 * y, 16, 0, 2 * Math.PI);
+        ctx.arc(60 + 40 * x, 20 + 40 * y, 16, 0, 2 * Math.PI);
         ctx.stroke();
     }
 
@@ -212,7 +212,7 @@
             }
         }
         j = opt.x;
-        while (chessboard[j][opt.y] == opt.player_role) {
+        while (j > 0 && j < 15 && chessboard[j][opt.y] == opt.player_role) {
             count++;
             j++;
             if (count == CHESSTOWIN + 1) {
