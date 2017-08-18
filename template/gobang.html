@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="../static/gobang.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="chess">
+        <canvas id="gobang" width="2400px" height="800px"></canvas>
+        <div class="group">
+            <div class="form-group">
+                <input class="form-control black_url" type="text" placeholder="黑子URL">
+            </div>
+            <div class="form-group">
+                <input class="form-control white_url" type="text" placeholder="白子URL">
+            </div>
+            <div class="form-group">
+                <input class="form-control time_out" type="text" placeholder="落子间隔(s)">
+            </div>
+            <button type="button" class="btn btn-md btn-warning chess_play">开始</button>
+            <button type="button" class="btn btn-md btn-success chess_reset">重置</button>
+            <button type="button" class="btn btn-md btn-info chess_replay">复盘</button>
+            <button type="button" class="btn btn-md btn-danger chess_replay_next">下一步</button>
+            <div class="msg chess_msg"></div>
+        </div>
+
+
+
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../static/gobang.js" charset="utf-8"></script>
+</body>
+</html>
