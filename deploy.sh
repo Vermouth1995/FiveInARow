@@ -1,42 +1,42 @@
 #!/bin/bash
 
-function ex_pid(){
-    echo `ps -ef | grep -i ex.out | grep -v "grep" | awk '{print $2}'`
+function gobang_pid(){
+    echo `ps -ef | grep -i gobang.out | grep -v "grep" | awk '{print $2}'`
 }
 
-function ex_gopath(){
+function gobang_gopath(){
     cd ..
-    local_go_path=`pwd | grep -i ex | awk '{print $0}'`
+    local_go_path=`pwd | grep -i gobang | awk '{print $0}'`
     export GOPATH=$GOPATH:${local_go_path}
     cd ./FiveInARow
 }
 
-function ex_close(){
-    expid=`ex_pid`
-    if [ x$expid != x""  ];then
-        kill -9 ${expid}
-        echo kill ex : ${expid}
+function gobang_close(){
+    gobangpid=`gobang_pid`
+    if [ x$gobangpid != x""  ];then
+        kill -9 ${gobangpid}
+        echo kill gobang : ${gobangpid}
     fi
 }
 
-function ex_build(){
-    go build -o ex.out main.go
+function gobang_build(){
+    go build -o gobang.out main.go
 
     if [ $? != "0" ];then
         exit $?
     fi
-    chmod 755 ex.out
+    chmod 755 gobang.out
 }
 
-function ex_start(){
-    nohup ./ex.out > ex.log 2>&1  &
+function gobang_start(){
+    nohup ./gobang.out > gobang.log 2>&1  &
 }
 
-function ex_log(){
-    tail -f ex.log
+function gobang_log(){
+    tail -f gobang.log
 }
 
-function ex_help(){
+function gobang_help(){
     echo "usage: $0 [<command>] [<args>]"
     echo ""
     echo "These are common $0 commands used in various situations:"
@@ -48,28 +48,28 @@ function ex_help(){
     echo "See '$0 help' to read about this infomation."
 }
 
-function ex_run(){
-    ex_gopath
-    ex_build
-    ex_close
-    ex_start
-    ex_log
+function gobang_run(){
+    # gobang_gopath
+    gobang_build
+    gobang_close
+    gobang_start
+    gobang_log
 }
 
 case $1 in
 
-    "log")          ex_log
+    "log")          gobang_log
     ;;
-    "close")        ex_close
+    "close")        gobang_close
     ;;
-    "run")          ex_run
+    "run")          gobang_run
     ;;
-    "help")         ex_help
+    "help")         gobang_help
     ;;
     *)
         if [ x$1 != x ];then
             echo unknown command : $1
         fi
-        ex_help
+        gobang_help
     ;;
 esac
